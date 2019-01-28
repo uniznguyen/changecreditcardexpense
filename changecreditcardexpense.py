@@ -5,7 +5,8 @@ cn = pyodbc.connect('DSN=QuickBooks Data;',autocommit=True)
 cursor = cn.cursor()
 encoding = 'utf-8'
 
-sql = """SELECT TxnID, ExpenseLineMemo, ExpenseLineAmount, ExpenseLineCustomerRefFullName, ExpenseLineClassRefFullName, ExpenseLineTxnLineID FROM CreditCardChargeExpenseLine
+sql = """SELECT TxnID, ExpenseLineMemo, ExpenseLineAmount, ExpenseLineCustomerRefFullName, ExpenseLineClassRefFullName, ExpenseLineTxnLineID 
+FROM CreditCardChargeExpenseLine UNOPTIMIZED
 WHERE TxnDate >= {d'2018-10-01'} AND ExpenseLineAccountRefFullName = 'Field Expenses'
 AND ExpenseLineCustomerRefFullName = 'XL Texas Lone Star Auction Lubbock' AND ExpenseLineAmount <> 0"""
 values = []
